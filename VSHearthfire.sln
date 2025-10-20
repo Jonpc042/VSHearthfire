@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36603.0 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSHearthfire", "VSHearthfire\VSHearthfire.csproj", "{3205B3C1-3152-496C-BCE5-14A51B6A364A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CakeBuild", "ZZCakeBuild\CakeBuild.csproj", "{E16E7F96-EC73-421A-AD41-D78707760EAD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3205B3C1-3152-496C-BCE5-14A51B6A364A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3205B3C1-3152-496C-BCE5-14A51B6A364A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3205B3C1-3152-496C-BCE5-14A51B6A364A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3205B3C1-3152-496C-BCE5-14A51B6A364A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E16E7F96-EC73-421A-AD41-D78707760EAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E16E7F96-EC73-421A-AD41-D78707760EAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E16E7F96-EC73-421A-AD41-D78707760EAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E16E7F96-EC73-421A-AD41-D78707760EAD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {850B1307-A25B-4A0D-91D6-6A458C0BADA0}
+	EndGlobalSection
+EndGlobal
