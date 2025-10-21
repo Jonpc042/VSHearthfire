@@ -147,17 +147,20 @@ namespace VSHearthfire.BlockEntities
         }
 
         // --- Player Interaction ---
-        public bool OnPlayerInteract(IPlayer byPlayer)
+        // Now accept BlockSelection so we know which selection box the player targeted
+        public bool OnPlayerInteract(IPlayer byPlayer, BlockSelection blockSel)
         {
             // Client should not perform authoritative inventory changes - short-circuit to avoid UI desync.
             if (Api.Side == EnumAppSide.Client) return true;
+
+            int targetedSlot = GetSlotIndexFromSelection(blockSel);
 
             ItemSlot hotbarSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
 
             if (hotbarSlot.Empty)
             {
-                // Hand is empty: Try to take an item
-                if (TryTake(byPlayer))
+                // Hand is empty: Try to take an item from the targeted slot (or fallback)
+                if (TryTake(byPlayer, targetedSlot))
                 {
                     MarkDirty(true);
                     return true;
@@ -165,8 +168,8 @@ namespace VSHearthfire.BlockEntities
             }
             else
             {
-                // Hand has item: Try to place an item
-                if (TryPut(byPlayer, hotbarSlot))
+                // Hand has item: Try to place an item into the targeted slot (or fallback)
+                if (TryPut(byPlayer, hotbarSlot, targetedSlot))
                 {
                     MarkDirty(true);
                     return true;
@@ -175,7 +178,17 @@ namespace VSHearthfire.BlockEntities
             return false;
         }
 
-        private bool TryPut(IPlayer byPlayer, ItemSlot hotbarSlot)
+        // Map BlockSelection.SelectionBoxIndex to inventory slot index.
+        // The JSON selectionboxes order is the index used here. If your block rotates you may need to transform this index.
+        private int GetSlotIndexFromSelection(BlockSelection blockSel)
+        {
+            if (blockSel == null) return -1;
+            int selIndex = blockSel.SelectionBoxIndex;
+            if (selIndex < 0 || selIndex >= slotCount) return -1;
+            return selIndex;
+        }
+
+        private bool TryPut(IPlayer byPlayer, ItemSlot hotbarSlot, int targetSlotIndex = -1)
         {
             // Ensure server-side authoritative changes
             if (Api.Side != EnumAppSide.Server) return false;
@@ -186,6 +199,27 @@ namespace VSHearthfire.BlockEntities
             }
 
             int quantity = 1;
+
+            // If a valid targeted slot was provided, try only that slot first
+            if (targetSlotIndex >= 0 && targetSlotIndex < slotCount)
+            {
+                var target = inventory[targetSlotIndex];
+                if (target.Empty)
+                {
+                    int moved = hotbarSlot.TryPutInto(Api.World, target, quantity);
+                    if (moved > 0)
+                    {
+                        target.Itemstack.Attributes.SetFloat("transitionstate", 0f);
+                        Api.World.PlaySoundAt(new AssetLocation("game:sounds/block/cloth"), byPlayer.Entity, byPlayer, true, 16);
+                        return true;
+                    }
+                    Api.World.Logger.Notification($"DryingRack: TryPutInto moved 0 into targeted slot {targetSlotIndex} of {hotbarSlot.Itemstack?.Collectible?.Code}");
+                    return false;
+                }
+                return false; // targeted slot occupied -> don't place elsewhere
+            }
+
+            // fallback: old behavior (first empty slot)
             for (int i = 0; i < slotCount; i++)
             {
                 if (inventory[i].Empty)
@@ -193,15 +227,12 @@ namespace VSHearthfire.BlockEntities
                     int moved = hotbarSlot.TryPutInto(Api.World, inventory[i], quantity);
                     if (moved > 0)
                     {
-                        // ensure the newly placed stack starts from 0 progress
                         inventory[i].Itemstack.Attributes.SetFloat("transitionstate", 0f);
-
                         Api.World.PlaySoundAt(new AssetLocation("game:sounds/block/cloth"), byPlayer.Entity, byPlayer, true, 16);
                         return true;
                     }
                     else
                     {
-                        // debug if TryPutInto failed despite IsValidDryingItem
                         Api.World.Logger.Notification($"DryingRack: TryPutInto moved 0 of {hotbarSlot.Itemstack?.Collectible?.Code}");
                     }
                 }
@@ -209,11 +240,28 @@ namespace VSHearthfire.BlockEntities
             return false;
         }
 
-        private bool TryTake(IPlayer byPlayer)
+        private bool TryTake(IPlayer byPlayer, int targetSlotIndex = -1)
         {
             // Ensure server-side authoritative changes
             if (Api.Side != EnumAppSide.Server) return false;
 
+            // If a valid targeted slot was provided, try that first
+            if (targetSlotIndex >= 0 && targetSlotIndex < slotCount)
+            {
+                if (!inventory[targetSlotIndex].Empty)
+                {
+                    ItemStack stack = inventory[targetSlotIndex].TakeOut(1);
+                    if (!byPlayer.InventoryManager.TryGiveItemstack(stack))
+                    {
+                        Api.World.SpawnItemEntity(stack, byPlayer.Entity.Pos.XYZ.Add(0, 0.5, 0));
+                    }
+                    Api.World.PlaySoundAt(new AssetLocation("game:sounds/block/cloth"), byPlayer.Entity, byPlayer, true, 16);
+                    return true;
+                }
+                return false; // targeted slot empty -> don't take from elsewhere
+            }
+
+            // fallback: old behavior (take from last non-empty slot)
             for (int i = slotCount - 1; i >= 0; i--)
             {
                 if (!inventory[i].Empty)

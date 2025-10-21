@@ -10,7 +10,8 @@ namespace VSHearthfire.Blocks
         {
             if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is BEDryingRack be)
             {
-                return be.OnPlayerInteract(byPlayer);
+                // Pass the BlockSelection so the BE can determine which selection box was targeted
+                return be.OnPlayerInteract(byPlayer, blockSel);
             }
             return base.OnBlockInteractStart(world, byPlayer, blockSel);
         }

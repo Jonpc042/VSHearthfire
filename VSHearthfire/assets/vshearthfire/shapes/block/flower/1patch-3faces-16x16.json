@@ -1,0 +1,189 @@
+{
+	"editor": {},
+	"textureWidth": 16,
+	"textureHeight": 16,
+	"textureSizes": {
+		"goldenpoppy-bundle-hanging.png": [16, 16]
+	},
+	"textures": {
+		"goldenpoppy-bundle-hanging.png": ""
+	},
+	"elements": [
+		{
+			"name": "origin",
+			"from": [8, 0, 8],
+			"to": [8, 0, 8],
+			"rotationOrigin": [8, 0, 8],
+			"children": [
+				{
+					"name": "flower",
+					"from": [0, 0, 0],
+					"to": [0, 0, 0],
+					"rotationOrigin": [0, 0, 0],
+					"children": [
+						{
+							"name": "face 6",
+							"from": [0, 0, 0],
+							"to": [0, 0, 0],
+							"rotationOrigin": [0, 0, 0],
+							"rotationY": -22.5,
+							"children": [
+								{
+									"name": "face 6",
+									"from": [-2, 0, 0],
+									"to": [2, 4, 0],
+									"rotationOrigin": [0, 0, 0],
+									"faces": {
+										"north": {
+											"texture": "#goldenpoppy-bundle-hanging.png",
+											"uv": [0, 0, 16, 16],
+											"autoUv": false,
+											"snapUv": false
+										},
+										"east": {
+											"texture": "#goldenpoppy-bundle-hanging.png",
+											"uv": [0, 0, 16, 16],
+											"autoUv": false,
+											"snapUv": false
+										},
+										"south": {
+											"texture": "#goldenpoppy-bundle-hanging.png",
+											"uv": [0, 0, 16, 16],
+											"autoUv": false,
+											"snapUv": false
+										},
+										"west": {
+											"texture": "#goldenpoppy-bundle-hanging.png",
+											"uv": [0, 0, 16, 16],
+											"autoUv": false,
+											"snapUv": false
+										},
+										"up": {
+											"texture": "#goldenpoppy-bundle-hanging.png",
+											"uv": [0, 0, 16, 16],
+											"autoUv": false,
+											"snapUv": false
+										},
+										"down": {
+											"texture": "#goldenpoppy-bundle-hanging.png",
+											"uv": [0, 0, 16, 16],
+											"autoUv": false,
+											"snapUv": false
+										}
+									}
+								}
+							]
+						},
+						{
+							"name": "face 7",
+							"from": [0, 0, 0],
+							"to": [0, 0, 0],
+							"rotationOrigin": [0, 0, 0],
+							"rotationY": 45,
+							"children": [
+								{
+									"name": "face 7",
+									"from": [-2, 0, 0],
+									"to": [2, 4, 0],
+									"rotationOrigin": [0, 0, 0],
+									"faces": {
+										"north": {
+											"texture": "#goldenpoppy-bundle-hanging.png",
+											"uv": [0, 0, 16, 16],
+											"autoUv": false,
+											"snapUv": false
+										},
+										"east": {
+											"texture": "#goldenpoppy-bundle-hanging.png",
+											"uv": [0, 0, 16, 16],
+											"autoUv": false,
+											"snapUv": false
+										},
+										"south": {
+											"texture": "#goldenpoppy-bundle-hanging.png",
+											"uv": [0, 0, 16, 16],
+											"autoUv": false,
+											"snapUv": false
+										},
+										"west": {
+											"texture": "#goldenpoppy-bundle-hanging.png",
+											"uv": [0, 0, 16, 16],
+											"autoUv": false,
+											"snapUv": false
+										},
+										"up": {
+											"texture": "#goldenpoppy-bundle-hanging.png",
+											"uv": [0, 0, 16, 16],
+											"autoUv": false,
+											"snapUv": false
+										},
+										"down": {
+											"texture": "#goldenpoppy-bundle-hanging.png",
+											"uv": [0, 0, 16, 16],
+											"autoUv": false,
+											"snapUv": false
+										}
+									}
+								}
+							]
+						},
+						{
+							"name": "face 8",
+							"from": [0, 0, 0],
+							"to": [0, 0, 0],
+							"rotationOrigin": [0, 0, 0],
+							"rotationY": -67.5,
+							"children": [
+								{
+									"name": "face 8",
+									"from": [-2, 0, 0],
+									"to": [2, 4, 0],
+									"rotationOrigin": [0, 0, 0],
+									"faces": {
+										"north": {
+											"texture": "#goldenpoppy-bundle-hanging.png",
+											"uv": [0, 0, 16, 16],
+											"autoUv": false,
+											"snapUv": false
+										},
+										"east": {
+											"texture": "#goldenpoppy-bundle-hanging.png",
+											"uv": [0, 0, 16, 16],
+											"autoUv": false,
+											"snapUv": false
+										},
+										"south": {
+											"texture": "#goldenpoppy-bundle-hanging.png",
+											"uv": [0, 0, 16, 16],
+											"autoUv": false,
+											"snapUv": false
+										},
+										"west": {
+											"texture": "#goldenpoppy-bundle-hanging.png",
+											"uv": [0, 0, 16, 16],
+											"autoUv": false,
+											"snapUv": false
+										},
+										"up": {
+											"texture": "#goldenpoppy-bundle-hanging.png",
+											"uv": [0, 0, 16, 16],
+											"autoUv": false,
+											"snapUv": false
+										},
+										"down": {
+											"texture": "#goldenpoppy-bundle-hanging.png",
+											"uv": [0, 0, 16, 16],
+											"autoUv": false,
+											"snapUv": false
+										}
+									}
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"animations": []
+}

@@ -64,6 +64,7 @@
 
 <ItemGroup>
   <Folder Include="assets\vshearthfire\itemtypes\plant\" />
+  <Folder Include="assets\vshearthfire\shapes\block\" />
 </ItemGroup>
 
 </Project>
