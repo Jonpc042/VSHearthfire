@@ -8,10 +8,6 @@
       "code": "type",
       "states": [ "normal" ]
     },
-    {
-      "code": "side",
-      "loadFromProperties": "abstract/horizontalorientation"
-    }
   ],
   "behaviors": [
     
