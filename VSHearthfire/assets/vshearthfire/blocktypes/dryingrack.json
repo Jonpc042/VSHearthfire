@@ -27,7 +27,7 @@
       }
     }
   ],
-  "shape": { "base": "vshearthfire:shapes/block/dryingrack" },
+  "shape": { "base": "vshearthfire:shapes/block/dryingrackv3" },
 
   "textures": {
     "legs": { "base": "game:block/wood/table/normal/legs" },
